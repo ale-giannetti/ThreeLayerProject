@@ -1,10 +1,12 @@
 package it.unikey.esercizioconnessionelibrary.DAL.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
+@Data
 @Entity
 public class BorrowEntity implements Serializable {
 
