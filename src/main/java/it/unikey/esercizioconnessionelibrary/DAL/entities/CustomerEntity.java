@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@Table(name = "CUSTOMER_ENTITIES")
 public class CustomerEntity {
 
     @Id

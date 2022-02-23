@@ -1,7 +1,10 @@
 package it.unikey.esercizioconnessionelibrary.BLL.DTO;
 
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 public class GenreDto {
 
     private Integer id;

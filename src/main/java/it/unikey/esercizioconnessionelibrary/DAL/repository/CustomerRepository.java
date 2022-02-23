@@ -12,11 +12,11 @@ import java.util.Set;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer>{
 
-    @Query("SELECT CustomerEntity.id, CustomerEntity.name, CustomerEntity.surname, BookEntity.id, BookEntity.title, BorrowEntity.startDate, BorrowEntity.endDate " +
+    /*@Query("SELECT CustomerEntity.id, CustomerEntity.name, CustomerEntity.surname, BookEntity.id, BookEntity.title, BorrowEntity.startDate, BorrowEntity.endDate " +
             "FROM BookEntity " +
             "INNER JOIN BorrowEntity ON BookEntity.id = BorrowEntity.book.id " +
             "INNER JOIN CustomerEntity ON BorrowEntity.customer.id = CustomerEntity.id")
-    Set<CustomerEntity> barrowBetweeenTwoDate(LocalDate start, LocalDate end);
+    Set<CustomerEntity> barrowBetweeenTwoDate(LocalDate start, LocalDate end);*/
 
 
 }
