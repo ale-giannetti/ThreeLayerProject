@@ -1,12 +1,9 @@
 package it.unikey.esercizioconnessionelibrary.DAL.repository;
 
-import it.unikey.esercizioconnessionelibrary.DAL.entities.BarrowPk;
 import it.unikey.esercizioconnessionelibrary.DAL.entities.CustomerEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 @Repository
@@ -18,5 +15,12 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Intege
             "INNER JOIN CustomerEntity ON BorrowEntity.customer.id = CustomerEntity.id")
     Set<CustomerEntity> barrowBetweeenTwoDate(LocalDate start, LocalDate end);*/
 
+    Set<CustomerEntity> findCustomerEntityBySurnameEqualsIgnoreCase(String surname);
+
+    Set<CustomerEntity> findCustomerEntityByNameAndSurnameEqualsIgnoreCase(String name, String surname);
+
+    boolean existsCustomerEntitiesBySurnameEqualsIgnoreCase(String surname);
+
+    boolean existsCustomerEntitiesByNameAndAndSurnameEqualsIgnoreCase(String name, String surname);
 
 }

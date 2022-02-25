@@ -1,9 +1,10 @@
 package it.unikey.esercizioconnessionelibrary.BLL.service.impl;
 
 import it.unikey.esercizioconnessionelibrary.BLL.DTO.AuthorDTO;
+import it.unikey.esercizioconnessionelibrary.BLL.DTO.CustomerDTO;
 import it.unikey.esercizioconnessionelibrary.BLL.exception.NotFoundException;
 import it.unikey.esercizioconnessionelibrary.BLL.mapper.AuthorMapper;
-import it.unikey.esercizioconnessionelibrary.BLL.service.CrudService;
+import it.unikey.esercizioconnessionelibrary.BLL.service.RegistryService;
 import it.unikey.esercizioconnessionelibrary.DAL.entities.AuthorEntities;
 import it.unikey.esercizioconnessionelibrary.DAL.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class AuthorServiceImpl implements CrudService<AuthorDTO> {
+public class AuthorServiceImpl implements RegistryService<AuthorDTO> {
 
     private final AuthorMapper authorMapper;
     private final AuthorRepository authorRepostory;
@@ -59,6 +60,15 @@ public class AuthorServiceImpl implements CrudService<AuthorDTO> {
         authorRepostory.deleteById(id);
     }
 
+    @Override
+    public Set<CustomerDTO> getBySurname(String surname) throws NotFoundException {
+        return null;
+    }
+
+    @Override
+    public Set<CustomerDTO> getByNameAndSurame(String name, String surname) throws NotFoundException {
+        return null;
+    }
 }
 
 

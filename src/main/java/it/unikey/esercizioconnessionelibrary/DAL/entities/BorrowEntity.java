@@ -1,6 +1,8 @@
 package it.unikey.esercizioconnessionelibrary.DAL.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,19 +10,20 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class BorrowEntity implements Serializable {
+public class BorrowEntity{
 
-    @EmbeddedId
-    private BarrowPk barrowPk;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @MapsId("bookId")
+    //@MapsId("bookId")
     @JoinColumn(name = "BOOK_ID")
     private BookEntity book;
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @MapsId("customerId")
+    //@MapsId("customerId")
     @JoinColumn(name = "CUSTOMER_ID")
     private CustomerEntity customer;
 

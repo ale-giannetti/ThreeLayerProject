@@ -4,6 +4,7 @@ import it.unikey.esercizioconnessionelibrary.BLL.DTO.CustomerDTO;
 import it.unikey.esercizioconnessionelibrary.BLL.exception.NotFoundException;
 import it.unikey.esercizioconnessionelibrary.BLL.mapper.CustomerMapper;
 import it.unikey.esercizioconnessionelibrary.BLL.service.CrudService;
+import it.unikey.esercizioconnessionelibrary.BLL.service.RegistryService;
 import it.unikey.esercizioconnessionelibrary.DAL.entities.CustomerEntity;
 import it.unikey.esercizioconnessionelibrary.DAL.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerServiceImpl implements CrudService<CustomerDTO> {
+public class CustomerServiceImpl implements RegistryService<CustomerDTO> {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
@@ -34,6 +35,7 @@ public class CustomerServiceImpl implements CrudService<CustomerDTO> {
         }
         return customerMapper.fromCustomerEntityToCustomerDto(customerRepository.getById(id));
     }
+
 
     @Override
     public Set<CustomerDTO> getAll() {
@@ -61,5 +63,25 @@ public class CustomerServiceImpl implements CrudService<CustomerDTO> {
 
     }
 
+    @Override
+    public Set<CustomerDTO> getBySurname(String surname) throws NotFoundException {
+        if(!customerRepository.existsCustomerEntitiesBySurnameEqualsIgnoreCase(surname)){
+            throw new NotFoundException("The customer you're trying to get not found in DB");
+        }
+        return customerRepository.findCustomerEntityBySurnameEqualsIgnoreCase(surname)
+                .stream()
+                .filter(elem -> elem.getSurname().equalsIgnoreCase(surname))
+                .map(customerMapper::fromCustomerEntityToCustomerDto)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<CustomerDTO> getByNameAndSurame(String name, String surname) throws NotFoundException {
+        if(!customerRepository.existsCustomerEntitiesByNameAndAndSurnameEqualsIgnoreCase(name, surname)){
+            throw new NotFoundException("The customer you're trying to get not found in DB");
+        }
+        return customerRepository.findCustomerEntityByNameAndSurnameEqualsIgnoreCase(name, surname)
+                .stream().filter(elem -> elem.getName().equalsIgnoreCase(name) && elem.getSurname().equalsIgnoreCase(surname)).map(customerMapper::fromCustomerEntityToCustomerDto).collect(Collectors.toSet());
+    }
 }
 

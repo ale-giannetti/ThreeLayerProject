@@ -11,6 +11,6 @@ public class CustomerRest {
     private Integer id;
     private String name;
     private String surname;
-    //private Set<BorrowRest> borrow;
+    private Set<BorrowRest> borrow;
 
 }
